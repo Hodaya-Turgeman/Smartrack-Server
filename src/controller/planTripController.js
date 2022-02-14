@@ -8,17 +8,7 @@ const sameSizeKMeans = async (req, res) => {
     const k = req.query['numDayTrip']; // Groups Number
     const size = 3 // Group size
     console.log("query", req.query)
-    // let vectors = [
-    // { x: -1.10, y: -1.10 },
-    // { x: -1.20, y: -1.20 },
-    // { x: -1.30, y: -1.30 },
-    // { x: -1.40, y: -1.40 },
-    // { x: -1.50, y: -1.50 },
-    // { x: -1.60, y: -1.60 },
-    // { x: -1.70, y: -1.70 },
-    // { x: -1.80, y: -1.80 },
-    // { x: -1.90, y: -1.90 },
-    // ]
+  
     // let vectors = [
     //     { x: 32.106497, y: 34.81188100000001 },
     //     { x: 32.0747169, y: 34.79148800000001 },
