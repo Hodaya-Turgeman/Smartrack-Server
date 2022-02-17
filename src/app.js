@@ -46,7 +46,7 @@ app.get('/', (req,res) => {
     res.render('homePage');
 });
 
-app.use(express.urlencoded({extend:false}));
+
 
 // app.use('/css', express.static(__dirname + 'public/css'));
 // app.use('/js', express.static(__dirname + 'public/js'));
