@@ -6,12 +6,13 @@ const isProd = process.env.APP_ENV === 'prod'
 if(!isProd)
     dotenv.config({path:'.env'})
 const bodyParser=require('body-parser')
-// const mongoose=require('mongoose')
+const mongoose=require('mongoose')
+
 // const apiEmployer = require('./route/apiEmployer');
 // const apiContractorWorker = require('./route/apiContractorWorker');
 // const apiCompanyWorker = require('./route/apiCompanyWorker');
 const apiPlanTrip = require('./route/apiPlanTrip');
-
+const apiTraveler = require('./route/apiTraveler');
 // const Joi = require('joi');
 // const { date } = require('joi');
 // Joi.objectId = require('joi-objectid')(Joi);
@@ -19,25 +20,28 @@ const apiPlanTrip = require('./route/apiPlanTrip');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
+
+
 // app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
 
 
-// const connectionParams = {
-//     useNewUrlParser: true,
-//     useCreateIndex: true,
-//     useUnifiedTopology: true,
-//     useFindAndModify: false
-// }
-// mongoose.connect(process.env.CONNECT_DB, connectionParams)
-//     .then(() => {
-//         console.log('connected');
+const connectionParams = {
+    useNewUrlParser: true,
+    // useCreateIndex: true,
+    useUnifiedTopology: true,
+    // useFindAndModify: false
+}
+mongoose.connect(process.env.CONNECT_DB, connectionParams)
+    .then(() => {
+        console.log('connected');
 
-//     }).catch((err) => {
-//         console.log(`error connecting ${err}`);
-// })
+    }).catch((err) => {
+        console.log(`error connecting ${err}`);
+})
 app.get('/', (req,res) => {
     res.render('homePage');
 });
@@ -56,6 +60,7 @@ app.use(express.urlencoded({extend:false}));
 // app.use('/companyWorker', apiCompanyWorker);
 
 app.use('/plantrip',apiPlanTrip)
+app.use('/traveler',apiTraveler)
 
 // const port = process.env.PORT
 const port =  process.env.PORT || 4000
