@@ -23,4 +23,4 @@ const Traveler = mongoose.model('Traveler', new mongoose.Schema({
 }));
 
 
-exports.Traveler = Traveler;
+module.exports = Traveler
