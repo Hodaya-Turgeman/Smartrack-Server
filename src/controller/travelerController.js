@@ -28,12 +28,6 @@ const addTraveler= (req,res)=>{
         travelerBirthYear:req.query.travelerBirthYear,
         travelerGender:req.query.travelerGender,
         travelerFavoriteCategories:req.query.travelerFavoriteCategories
-        // travelerMail:"hodayasi123@gmail.com",
-        // travelerName:"Hodaya",
-        // travelerBirthYear:1999,
-        // travelerGender:"Female",
-        // travelerFavoriteCategories:["amusement_park","aquarium","museum"]
-    
     })
     console.log("traveler", traveler)
     traveler.save()
