@@ -38,7 +38,7 @@ const addTraveler= (req,res)=>{
     console.log("traveler", traveler)
     traveler.save()
         .then(response=>{
-            res.send('User added successfully')
+            res.send('true')
         })
         .catch(error => {
                 res.send( 'An error User Occurred!')
