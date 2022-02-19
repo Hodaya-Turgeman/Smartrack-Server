@@ -18,7 +18,7 @@ const getInfoTraveler = (req, res) => {
     })
     
 }
-const addUser= (req,res)=>{
+const addTraveler= (req,res)=>{
     console.log("body", req.body)
     console.log("params", req.params)
     console.log("query", req.query)
@@ -43,4 +43,4 @@ const addUser= (req,res)=>{
                 res.send( 'An error POST Occurred!')
         })
 }
-module.exports = {infoTraveler,addUser,getInfoTraveler}
+module.exports = {infoTraveler,addTraveler,getInfoTraveler}
