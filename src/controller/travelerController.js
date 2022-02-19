@@ -23,11 +23,11 @@ const addTraveler= (req,res)=>{
     console.log("params", req.params)
     console.log("query", req.query)
     const traveler=new Traveler({
-        travelerMail:req.query.email,
-        travelerName:req.query.name,
-        travelerBirthYear:req.query.birthyear,
-        travelerGender:req.query.gender,
-        travelerFavoriteCategories:req.query.favorite
+        travelerMail:req.query.travelerMail,
+        travelerName:req.query.travelerName,
+        travelerBirthYear:req.query.travelerBirthYear,
+        travelerGender:req.query.travelerGender,
+        travelerFavoriteCategories:req.query.travelerFavoriteCategories
         // travelerMail:"hodayasi123@gmail.com",
         // travelerName:"Hodaya",
         // travelerBirthYear:1999,
@@ -35,6 +35,7 @@ const addTraveler= (req,res)=>{
         // travelerFavoriteCategories:["amusement_park","aquarium","museum"]
     
     })
+    console.log("traveler", traveler)
     traveler.save()
         .then(response=>{
             res.send('User added successfully')
