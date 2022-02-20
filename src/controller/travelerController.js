@@ -11,12 +11,11 @@ const infoTraveler = (req, res) => {
     
 }
 const getInfoTraveler = (req, res) => {
-    Traveler.findOne({travelerMaill: req.params.email}).then(traveler=> {
+    Traveler.findOne({travelerMaill: req.query.travelerMail}).then(traveler=> {
         res.send(traveler)
     }).catch(err=> {
         res.send("False")
     })
-    
 }
 const addTraveler= (req,res)=>{
     console.log("body", req.body)
