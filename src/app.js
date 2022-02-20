@@ -32,7 +32,7 @@ const connectionParams = {
     useUnifiedTopology: true
 }
 
-mongoose.connect(process.env.CONNECT_DB, connectionParams)
+mongoose.connect("mongodb+srv://smartrack:smartrack@smartrack.pt0ms.mongodb.net/Smartrack?retryWrites=true&w=majority", connectionParams)
     .then(() => {
         console.log('connected');
 
