@@ -39,15 +39,15 @@ const addTraveler= (req,res)=>{
 }
 const editTraveler = (req,res)=>{
     console.log("query", req.query)
-    const traveler=new Traveler({
+    const traveler={
         travelerMail:req.query.travelerMail,
         travelerName:req.query.travelerName,
         travelerBirthYear:req.query.travelerBirthYear,
         travelerGender:req.query.travelerGender,
         travelerFavoriteCategories:req.query.travelerFavoriteCategories
-    })
+    }
     console.log("traveler", traveler)
-    Employer.findOneAndUpdate({email: req.params.email},traveler, {new: true })
+    Traveler.findOneAndUpdate({travelerMail:req.query.travelerMail},traveler, {new: true })
         .then(response=>{
             res.send('true')
         })
