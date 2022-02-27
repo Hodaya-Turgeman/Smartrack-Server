@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Traveler = require('../model/traveler');
+const Trip = require('../model/Trip');
+const TravelerPlaces = require('../model/TravelerPlaces');
 
 const infoTraveler = (req, res) => {
     Traveler.findOne({travelerMail: req.params.email}).then(traveler=> {
@@ -10,8 +12,53 @@ const infoTraveler = (req, res) => {
     })
     
 }
+const addTrip = (req,res) =>{
+    const trip = new Trip({ 
+        travelerMail:req.query.travelerMail,
+        tripDestination: req.query.tripDestination,
+        tripName: req.query.tripName,
+        tripDaysNumber:req.query.tripDaysNumber
+    })
+    trip.save()
+        .then(response=>{
+            const travelerPlaces = new  TravelerPlaces({
+                placeID:req.query.placeID,
+                travelerMail:req.query.travelerMail,
+                tripID: response._id,
+                placeDayInTrip :req.query.placeDayInTrip,
+                travelerPlaceRating: 0,
+                tripDestination:req.query.tripDestination
+
+            })
+            console.log(travelerPlaces)
+            travelerPlaces.save()
+            .then(response=>{
+                const mergedObj = Object.assign(trip,travelerPlaces);
+                const jsonStr = JSON.stringify(mergedObj);
+                console.log(jsonStr)
+                // res.send(jsonStr)
+                res.send('true')
+            })
+            .catch(error =>{
+                res.send( 'An error add travelerPlaces !')
+            })
+           
+        })
+        .catch(error => {
+                res.send( 'An error User Occurred!')
+        })
+
+}
 const getInfoTraveler = (req, res) => {
     Traveler.findOne({travelerMail: req.query.travelerMail}).then(traveler=> {
+        const x= typeof traveler
+        console.log(x)
+
+
+        // const mergedObj = Object.assign(traveler,traveler);
+        // const jsonStr = JSON.stringify(mergedObj);
+        // console.log(jsonStr)
+        // res.send(jsonStr)
         res.send(traveler)
     }).catch(err=> {
         res.send("False")
@@ -55,4 +102,4 @@ const editTraveler = (req,res)=>{
             res.send("false")
         })
 }
-module.exports = {infoTraveler,addTraveler,getInfoTraveler,editTraveler}
+module.exports = {infoTraveler,addTraveler,getInfoTraveler,editTraveler,addTrip}

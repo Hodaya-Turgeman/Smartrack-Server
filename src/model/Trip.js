@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 const Trip = mongoose.model('Trip', new mongoose.Schema({
-    travelerID:{
-        type: mongoose.Types.ObjectId,
-        ref: 'Traveler',
-        required:true,
+    travelerMail:{
+        type:String,
+        required:true
     },
     tripDestination:{
         type:String,

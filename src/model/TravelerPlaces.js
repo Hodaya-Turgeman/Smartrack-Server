@@ -2,19 +2,18 @@ const mongoose = require('mongoose');
 const TravelerPlaces = mongoose.model('TravelerPlaces', new mongoose.Schema({
     placeID:
         {
-            type: mongoose.Types.ObjectId,
-            ref: 'Place'
+            type: String,
+            required:true
         },
-    travelerID:
-        {
-            type: mongoose.Types.ObjectId,
-            ref: 'Traveler'
-        },
+    travelerMail:{
+        type:String,
+        required:true
+    },
     tripID:
-        {
-            type: mongoose.Types.ObjectId,
-            ref: 'Trip'
-        },
+    {
+        type: mongoose.Types.ObjectId,
+        ref: 'Trip'
+    },
     placeDayInTrip:{
         type:Number,
         required:true
@@ -22,7 +21,10 @@ const TravelerPlaces = mongoose.model('TravelerPlaces', new mongoose.Schema({
     travelerPlaceRating:{
         type:Number
     },
-
+    tripDestination:{
+        type:String,
+        required:true
+    }
 
 }));
 module.exports = TravelerPlaces
