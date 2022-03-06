@@ -49,7 +49,7 @@ const addTrip = (req,res) =>{
     res.send( response._id)
         })
     .catch(error => {
-            res.send( 'An error User Occurred!')
+            res.send( 'false')
     })
 
 }
