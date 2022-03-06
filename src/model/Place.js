@@ -1,16 +1,13 @@
 const mongoose = require('mongoose');
 const Place = mongoose.model('Place', new mongoose.Schema({
     placeName:{
-        type:String,
-        required:true
+        type:String
     },
     placeFormattedAddress:{
-        type:String,
-        required:true
+        type:String
     },
     placeInternationalPhoneNumber:{
-        type:String,
-        required:true
+        type:String
     },
     placeLocationLat:{
         type:Number
@@ -18,16 +15,14 @@ const Place = mongoose.model('Place', new mongoose.Schema({
     placeLocationLng:{
         type:Number
     },
-    attractionRating:{
+    placeRating:{
         type:Number
     },
     placeWebsite:{
-        type:String,
-        required:true
+        type:String
     },
     placeImgUrl:{
-        type:String,
-        required:true
+        type:String
     },
     placeOpeningHours:[{
         type:String
