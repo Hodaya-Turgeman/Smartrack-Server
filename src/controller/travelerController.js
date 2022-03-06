@@ -16,38 +16,16 @@ const addTrip = (req,res) =>{
     console.log("body", req.body)
     console.log("params", req.params)
     console.log("query", req.query)
-    res.send(req.query)
-
     const trip = new Trip({ 
         travelerMail:req.query.travelerMail,
         tripDestination: req.query.tripDestination,
         tripName: req.query.tripName,
         tripDaysNumber:req.query.tripDaysNumber
     })
-    trip.save()
-    .then(response=>{
-//             const travelerPlaces = new  TravelerPlaces({
-//                 placeID:req.query.placeID,
-//                 travelerMail:req.query.travelerMail,
-//                 tripID: response._id,
-//                 placeDayInTrip :req.query.placeDayInTrip,
-//                 travelerPlaceRating: 0,
-//                 tripDestination:req.query.tripDestination
-
-//             })
-//             travelerPlaces.save()
-//             .then(response=>{
-//                 const mergedObj = Object.assign(trip,travelerPlaces);
-//                 const jsonStr = JSON.stringify(mergedObj);
-//                 console.log(jsonStr)
-//                 // res.send(jsonStr)
-//                 res.send('true')
-//             })
-//             .catch(error =>{
-//                 res.send( 'An error add travelerPlaces !')
-//             })
-    res.send( response._id)
-        })
+    console.log(trip)
+    trip.save().then(response=>{
+        res.send( response)
+    })
     .catch(error => {
             res.send( 'false')
     })
@@ -65,8 +43,7 @@ const addPlace = (req,res) =>{
         travelerPlaceRating: 0,
         tripDestination:req.query.tripDestination
     })
-    travelerPlaces.save()
-    .then(response=>{
+    travelerPlaces.save().then(response=>{
         // const mergedObj = Object.assign(trip,travelerPlaces);
         // const jsonStr = JSON.stringify(mergedObj);
         // console.log(jsonStr)
