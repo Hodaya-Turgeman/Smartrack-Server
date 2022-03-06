@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 const TravelerPlaces = mongoose.model('TravelerPlaces', new mongoose.Schema({
-    placeID:
+    placeId:
         {
             type: String,
             required:true
-        },
+    },
     travelerMail:{
         type:String,
         required:true
     },
-    tripID:
+    tripId:
     {
         type: mongoose.Types.ObjectId,
         ref: 'Trip'
