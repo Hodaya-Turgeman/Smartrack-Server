@@ -18,14 +18,14 @@ const addTrip = (req,res) =>{
     console.log("query", req.query)
     res.send(req.query)
 
-//     const trip = new Trip({ 
-//         travelerMail:req.query.travelerMail,
-//         tripDestination: req.query.tripDestination,
-//         tripName: req.query.tripName,
-//         tripDaysNumber:req.query.tripDaysNumber
-//     })
-//     trip.save()
-//         .then(response=>{
+    const trip = new Trip({ 
+        travelerMail:req.query.travelerMail,
+        tripDestination: req.query.tripDestination,
+        tripName: req.query.tripName,
+        tripDaysNumber:req.query.tripDaysNumber
+    })
+    trip.save()
+    .then(response=>{
 //             const travelerPlaces = new  TravelerPlaces({
 //                 placeID:req.query.placeID,
 //                 travelerMail:req.query.travelerMail,
@@ -46,12 +46,37 @@ const addTrip = (req,res) =>{
 //             .catch(error =>{
 //                 res.send( 'An error add travelerPlaces !')
 //             })
-           
-//         })
-//         .catch(error => {
-//                 res.send( 'An error User Occurred!')
-//         })
+    res.send( response._id)
+        })
+    .catch(error => {
+            res.send( 'An error User Occurred!')
+    })
 
+}
+const addPlace = (req,res) =>{
+    console.log("body", req.body)
+    console.log("params", req.params)
+    console.log("query", req.query)
+    res.send(req.query)
+    const travelerPlaces = new  TravelerPlaces({
+        placeID:req.query.placeID,
+        travelerMail:req.query.travelerMail,
+        tripID: req.query.tripId,
+        placeDayInTrip :req.query.placeDayInTrip,
+        travelerPlaceRating: 0,
+        tripDestination:req.query.tripDestination
+    })
+    travelerPlaces.save()
+    .then(response=>{
+        // const mergedObj = Object.assign(trip,travelerPlaces);
+        // const jsonStr = JSON.stringify(mergedObj);
+        // console.log(jsonStr)
+        // res.send(jsonStr)
+        res.send('true')
+    })
+    .catch(error =>{
+        res.send( 'An error add travelerPlaces !')
+    })
 }
 const getInfoTraveler = (req, res) => {
     Traveler.findOne({travelerMail: req.query.travelerMail}).then(traveler=> {
@@ -106,4 +131,4 @@ const editTraveler = (req,res)=>{
             res.send("false")
         })
 }
-module.exports = {infoTraveler,addTraveler,getInfoTraveler,editTraveler,addTrip}
+module.exports = {infoTraveler,addTraveler,getInfoTraveler,editTraveler,addTrip,addPlace}
