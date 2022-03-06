@@ -57,11 +57,10 @@ const addPlace = (req,res) =>{
     console.log("body", req.body)
     console.log("params", req.params)
     console.log("query", req.query)
-    res.send(req.query)
     const travelerPlaces = new  TravelerPlaces({
-        placeID:req.query.placeID,
+        placeId:req.query.placeId,
         travelerMail:req.query.travelerMail,
-        tripID: req.query.tripId,
+        tripId: req.query.tripId,
         placeDayInTrip :req.query.placeDayInTrip,
         travelerPlaceRating: 0,
         tripDestination:req.query.tripDestination
@@ -82,8 +81,6 @@ const getInfoTraveler = (req, res) => {
     Traveler.findOne({travelerMail: req.query.travelerMail}).then(traveler=> {
         const x= typeof traveler
         console.log(x)
-
-
         // const mergedObj = Object.assign(traveler,traveler);
         // const jsonStr = JSON.stringify(mergedObj);
         // console.log(jsonStr)
