@@ -3,6 +3,7 @@ const router = express.Router();
 const Traveler = require('../model/traveler');
 const Trip = require('../model/Trip');
 const TravelerPlaces = require('../model/TravelerPlaces');
+const { ObjectId } = require('mongodb');
 
 const infoTraveler = (req, res) => {
     Traveler.findOne({travelerMail: req.params.email}).then(traveler=> {
@@ -35,13 +36,21 @@ const addPlace = (req,res) =>{
     console.log("body", req.body)
     console.log("params", req.params)
     console.log("query", req.query)
+    // const travelerPlaces = new  TravelerPlaces({
+    //     placeId:req.query.placeId,
+    //     travelerMail:req.query.travelerMail,
+    //     tripId: req.query.tripId,
+    //     placeDayInTrip :req.query.placeDayInTrip,
+    //     travelerPlaceRating: 0,
+    //     tripDestination:req.query.tripDestination
+    // })
     const travelerPlaces = new  TravelerPlaces({
-        placeId:req.query.placeId,
-        travelerMail:req.query.travelerMail,
-        tripId: req.query.tripId,
-        placeDayInTrip :req.query.placeDayInTrip,
+        placeId:'ChIJIVz_l1ydAhURnP86k4War6U',
+        travelerMail:'ttt@gmail.com',
+        tripId:new ObjectId("622528a7912d7edb07a03a96"),
+        placeDayInTrip :'1',
         travelerPlaceRating: 0,
-        tripDestination:req.query.tripDestination
+        tripDestination:'Ashkelon'
     })
     travelerPlaces.save().then(response=>{
         // const mergedObj = Object.assign(trip,travelerPlaces);

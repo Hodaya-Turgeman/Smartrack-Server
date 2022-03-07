@@ -12,7 +12,7 @@ const TravelerPlaces = mongoose.model('TravelerPlaces', new mongoose.Schema({
     tripId:
     {
         type: mongoose.Types.ObjectId,
-        ref: 'Trip'
+        
     },
     placeDayInTrip:{
         type:Number,
