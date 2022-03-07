@@ -25,7 +25,7 @@ const addTrip = (req,res) =>{
     })
     console.log(trip)
     trip.save().then(response=>{
-        res.send( response)
+        res.send( response._id)
     })
     .catch(error => {
             res.send( 'false')
