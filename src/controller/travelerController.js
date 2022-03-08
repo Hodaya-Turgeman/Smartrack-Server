@@ -5,7 +5,7 @@ const Trip = require('../model/Trip');
 const TravelerPlaces = require('../model/TravelerPlaces');
 const { ObjectId } = require('mongodb');
 
-
+const Place = require('../model/Place')
 
 const infoTraveler = (req, res) => {
     Traveler.findOne({travelerMail: req.params.email}).then(traveler=> {
@@ -39,8 +39,6 @@ const addPlace = (req,res) =>{
     console.log("body", req.body)
     console.log("params", req.params)
     console.log("query", req.query)
-    var a = req.query.tripId.split("\"")
-    console.log(a)
     const travelerPlaces = new  TravelerPlaces({
         placeId:req.query.placeId,
         travelerMail:req.query.travelerMail,
@@ -55,7 +53,27 @@ const addPlace = (req,res) =>{
         // const jsonStr = JSON.stringify(mergedObj);
         // console.log(jsonStr)
         // res.send(jsonStr)
-        res.send('true')
+      
+        const place= new Place({
+            placeId: req.query.placeId,
+            placeName: req.query.placeName,
+            placeFormattedAddress:req.query.placeFormattedAddress,
+            placeInternationalPhoneNumber:req.query.placeInternationalPhoneNumber,
+            placeLocationLat:req.query.placeLocationLat,
+            placeLocationLng:req.query.placeLocationLng,
+            placeRating:req.query.placeRating,
+            placeWebsite:req.query.placeWebsite,
+            placeImgUrl:req.query.placeImgUrl,
+            placeOpeningHours:req.query.placeOpeningHours
+        })
+        place.save()
+            .then(response=>{
+                res.send('true')
+            })
+            .catch(error =>{
+                res.send( 'Exiting place in database')
+            })
+        
     })
     .catch(error =>{
         res.send( 'An error add travelerPlaces !')
