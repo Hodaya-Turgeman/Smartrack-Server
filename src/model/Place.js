@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Place = mongoose.model('Place', new mongoose.Schema({
-    plaseId:{
+    placeId:{
         type:String,
-        required:true,
-        unique: true
+        unique: true,
+        required:true
     },
     placeName:{
         type:String
