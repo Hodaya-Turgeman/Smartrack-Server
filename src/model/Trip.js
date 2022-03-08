@@ -4,6 +4,11 @@ const Trip = mongoose.model('Trip', new mongoose.Schema({
         type:String,
         required:true
     },
+    tripId:{
+        type:String,
+        required:true,
+        unique: true
+    },
     tripDestination:{
         type:String,
         required:true

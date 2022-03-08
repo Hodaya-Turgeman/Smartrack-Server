@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const TravelerPlaces = mongoose.model('TravelerPlaces', new mongoose.Schema({
-    placeId:
-        {
+    placeId:{
             type: String,
             required:true
     },
@@ -11,7 +10,8 @@ const TravelerPlaces = mongoose.model('TravelerPlaces', new mongoose.Schema({
     },
     tripId:
     {
-        type: mongoose.Types.ObjectId,
+        type: String,
+        required:true
         
     },
     placeDayInTrip:{
