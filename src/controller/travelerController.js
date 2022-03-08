@@ -66,7 +66,6 @@ const addPlace = (req,res) =>{
             placeImgUrl:req.query.placeImgUrl,
             placeOpeningHours:req.query.placeOpeningHours
         })
-        console.log(place)
         place.save()
             .then(response=>{
                 res.send('true')
