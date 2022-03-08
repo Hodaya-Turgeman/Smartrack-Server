@@ -21,16 +21,18 @@ const addTrip = (req,res) =>{
         travelerMail:req.query.travelerMail,
         tripDestination: req.query.tripDestination,
         tripName: req.query.tripName,
-        tripDaysNumber:req.query.tripDaysNumber
+        tripDaysNumber:req.query.tripDaysNumber,
+        tripId: req.query.tripId
     })
     console.log(trip)
-    trip.save().then(response=>{
-        res.send( response._id)
-    })
-    .catch(error => {
-            res.send( 'false')
-    })
-
+    trip.save()
+        .then(response=>{
+            res.send("true")
+        })
+        .catch(error => {
+                res.send( 'false')
+        })
+   
 }
 const addPlace = (req,res) =>{
     console.log("body", req.body)
@@ -47,7 +49,7 @@ const addPlace = (req,res) =>{
     const travelerPlaces = new  TravelerPlaces({
         placeId:'ChIJIVz_l1ydAhURnP86k4War6U',
         travelerMail:'ttt@gmail.com',
-        tripId:new ObjectId("622528a7912d7edb07a03a96"),
+        tripId: "622528a7912d7edb07a03a96",
         placeDayInTrip :'1',
         travelerPlaceRating: 0,
         tripDestination:'Ashkelon'

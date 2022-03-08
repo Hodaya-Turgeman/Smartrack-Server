@@ -8,11 +8,10 @@ const Traveler = mongoose.model('Traveler', new mongoose.Schema({
     travelerName:{
         type:String,
         required:true,
-        trim:true,
+        trim:true
     },
     travelerBirthYear:{
-        type:Number,
-        required:true
+        type:Number
     },
     travelerGender:{
         type:String,
