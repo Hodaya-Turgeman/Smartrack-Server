@@ -3,7 +3,8 @@ const router = express.Router();
 const Traveler = require('../model/traveler');
 const Trip = require('../model/Trip');
 const TravelerPlaces = require('../model/TravelerPlaces');
-const { ObjectId } = require('mongodb');
+ObjectId = require('mongodb').ObjectID;
+
 
 const infoTraveler = (req, res) => {
     Traveler.findOne({travelerMail: req.params.email}).then(traveler=> {
@@ -26,7 +27,7 @@ const addTrip = (req,res) =>{
     console.log(trip)
     trip.save()
         .then(response=>{
-            res.send(response._id)
+            res.send(trip._id)
         })
         .catch(error => {
                 res.send( 'false')
@@ -40,7 +41,7 @@ const addPlace = (req,res) =>{
     const travelerPlaces = new  TravelerPlaces({
         placeId:req.query.placeId,
         travelerMail:req.query.travelerMail,
-        tripId: new ObjectId(req.query.tripId),
+        tripId:ObjectId(req.query.tripId) ,
         placeDayInTrip :req.query.placeDayInTrip,
         travelerPlaceRating: 0,
         tripDestination:req.query.tripDestination
