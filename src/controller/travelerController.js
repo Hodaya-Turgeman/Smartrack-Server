@@ -20,6 +20,7 @@ const addTrip = (req,res) =>{
     console.log("params", req.params)
     console.log("query", req.query)
     const trip = new Trip({ 
+        tripId:req.query.tripId,
         travelerMail:req.query.travelerMail,
         tripDestination: req.query.tripDestination,
         tripName: req.query.tripName,
@@ -29,7 +30,7 @@ const addTrip = (req,res) =>{
     console.log(trip)
     trip.save()
         .then(response=>{
-            res.send(trip._id)
+            res.send('true')
         })
         .catch(error => {
                 res.send( 'false')
@@ -43,7 +44,7 @@ const addPlace = (req,res) =>{
     const travelerPlaces = new  TravelerPlaces({
         placeId:req.query.placeId,
         travelerMail:req.query.travelerMail,
-        tripId: new ObjectId(req.query.tripId) ,
+        tripId: req.query.tripId,
         placeDayInTrip :req.query.placeDayInTrip,
         travelerPlaceRating: 0,
         tripDestination:req.query.tripDestination

@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
 const Trip = mongoose.model('Trip', new mongoose.Schema({
+    tripId:{
+        type:String,
+        required:true,
+        unique: true
+    },
     travelerMail:{
         type:String,
         required:true
