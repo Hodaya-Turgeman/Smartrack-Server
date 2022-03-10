@@ -23,7 +23,8 @@ const addTrip = (req,res) =>{
         travelerMail:req.query.travelerMail,
         tripDestination: req.query.tripDestination,
         tripName: req.query.tripName,
-        tripDaysNumber:req.query.tripDaysNumber
+        tripDaysNumber:req.query.tripDaysNumber,
+        tripDate:req.query.tripDate
     })
     console.log(trip)
     trip.save()

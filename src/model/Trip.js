@@ -14,6 +14,9 @@ const Trip = mongoose.model('Trip', new mongoose.Schema({
     tripDaysNumber:{
         type:Number,
         required:true
+    },
+    tripDate:{
+        type:String
     }
 }));
 
