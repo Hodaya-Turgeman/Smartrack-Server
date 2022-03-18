@@ -5,7 +5,8 @@ const Trip = require('../model/Trip');
 const TravelerPlaces = require('../model/TravelerPlaces');
 const { ObjectId } = require('mongodb');
 
-const Place = require('../model/Place')
+const Place = require('../model/Place');
+const { response } = require('express');
 
 const infoTraveler = (req, res) => {
     Traveler.findOne({travelerMail: req.params.email}).then(traveler=> {
@@ -36,6 +37,77 @@ const addTrip = (req,res) =>{
                 res.send( 'false')
         })
    
+}
+const getTripUser = (req,res)=>{
+    console.log("body", req.body)
+    console.log("params", req.params)
+    console.log("query", req.query)
+    var arrayPlace = [];
+    Trip.find({travelerMail:req.query.travelerMail})
+    .then(response=>{
+        TravelerPlaces.find({travelerMail:req.query.travelerMail})
+        .then(resTravelerPlaces=>{
+            for (const travelerPlace in resTravelerPlaces) {
+                if(!arrayPlace.includes(resTravelerPlaces[travelerPlace]['placeId'])){
+                    arrayPlace.push(resTravelerPlaces[travelerPlace]['placeId'])
+                }
+            }
+            Place.find({placeId:arrayPlace})
+            .then(resPlaces=>{
+                var  arrPlaceUser = [];
+
+                for (const travelerPlace in resTravelerPlaces) {
+                    var element = {}
+                    for(const placeInfo in resPlaces){
+                        if(resPlaces[placeInfo]['placeId']== resTravelerPlaces[travelerPlace]['placeId']){
+                            element.placeId=resPlaces[placeInfo]['placeId']
+                            element.placeName=resPlaces[placeInfo]['placeName']
+                            element.placeLocationLat= resPlaces[placeInfo]['placeLocationLat']
+                            element.placeLocationLng = resPlaces[placeInfo]['placeLocationLng']
+                            element.placeFormattedAddress = resPlaces[placeInfo]['placeFormattedAddress']
+                            element.placeInternationalPhoneNumber =  resPlaces[placeInfo]['placeInternationalPhoneNumber']
+                            element.placeRating =  resPlaces[placeInfo]['placeRating']
+                            element.placeWebsite = resPlaces[placeInfo]['placeWebsite']
+                            element.placeImgUrl = resPlaces[placeInfo]['placeImgUrl']
+                            element.placeOpeningHours = resPlaces[placeInfo]['placeOpeningHours']
+                            element.placeDayInTrip = resTravelerPlaces[travelerPlace]['placeDayInTrip']
+                            element.travelerMail = resTravelerPlaces[travelerPlace]['travelerMail']
+                            element.tripId = resTravelerPlaces[travelerPlace]['tripId']
+                            element.travelerPlaceRating = resTravelerPlaces[travelerPlace]['travelerPlaceRating']
+                        
+                            break
+                        }
+                    }
+                    arrPlaceUser.push(element)
+                }
+
+                
+                var item={}
+                item.trips=response
+                item.placeTraveler= arrPlaceUser
+                
+        // console.log(jsonStr)
+        // res.send(jsonStr)
+                // console.log(resTravelerPlaces)
+                // console.log(arrPlaceUser)
+                res.send(item)
+            })
+            .catch(err=>{
+                confirm.log(err)
+                res.send('false')
+            })
+           
+        })
+        .catch(error=>{
+            confirm.log(error)
+            res.send('false')
+        })
+       
+    })
+    .catch(error=>{
+        confirm.log(error)
+        res.send('false')
+    })
 }
 const addPlace = (req,res) =>{
     console.log("body", req.body)
@@ -132,4 +204,4 @@ const editTraveler = (req,res)=>{
             res.send("false")
         })
 }
-module.exports = {infoTraveler,addTraveler,getInfoTraveler,editTraveler,addTrip,addPlace}
+module.exports = {infoTraveler,addTraveler,getInfoTraveler,editTraveler,addTrip,addPlace,getTripUser}

@@ -7,4 +7,5 @@ router.get('/getinfotraveler',traveler.getInfoTraveler)
 router.get('/editTraveler',traveler.editTraveler)
 router.get('/addTrip',traveler.addTrip)
 router.get('/addPlace',traveler.addPlace)
+router.get('/getTripUser',traveler.getTripUser)
 module.exports = router;
