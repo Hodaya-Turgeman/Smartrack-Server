@@ -55,7 +55,6 @@ const getTripUser = (req,res)=>{
             Place.find({placeId:arrayPlace})
             .then(resPlaces=>{
                 var  arrPlaceUser = [];
-
                 for (const travelerPlace in resTravelerPlaces) {
                     var element = {}
                     for(const placeInfo in resPlaces){
