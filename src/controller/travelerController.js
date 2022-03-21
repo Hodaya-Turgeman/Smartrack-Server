@@ -40,7 +40,6 @@ const addTrip = (req,res) =>{
 }
 const getTripUser = (req,res)=>{
     console.log("body", req.body)
-    console.log("params", req.params)
     console.log("query", req.query)
     var arrayPlace = [];
     Trip.find({travelerMail:req.query.travelerMail})
