@@ -202,7 +202,7 @@ const editTraveler = (req,res)=>{
             res.send("false")
         })
 }
-const editTravelerPlaces = (req,res)=>{
+const editTravelerPlace = (req,res)=>{
     console.log("query", req.query)
     const travelerPlaces = new  TravelerPlaces({
         placeId:req.query.placeId,
@@ -220,4 +220,4 @@ const editTravelerPlaces = (req,res)=>{
         res.send("false")
     })
 }
-module.exports = {infoTraveler,addTraveler,getInfoTraveler,editTraveler,addTrip,addPlace,getTripUser,editTravelerPlaces}
+module.exports = {infoTraveler,addTraveler,getInfoTraveler,editTraveler,addTrip,addPlace,getTripUser,editTravelerPlace}
