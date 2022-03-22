@@ -204,15 +204,8 @@ const editTraveler = (req,res)=>{
 }
 const editTravelerPlace = (req,res)=>{
     console.log("query", req.query)
-    const travelerPlaces = new  TravelerPlaces({
-        placeId:req.query.placeId,
-        travelerMail:req.query.travelerMail,
-        tripId: req.query.tripId,
-        placeDayInTrip :req.query.placeDayInTrip,
-        travelerPlaceRating: 0,
-        tripDestination:req.query.tripDestination
-    })
-    TravelerPlaces.findOneAndUpdate({travelerMail:req.query.travelerMail,tripId:req.query.tripId,placeId:req.query.placeId},travelerPlaces,{new: true })
+    
+    TravelerPlaces.findOneAndUpdate({travelerMail:req.query.travelerMail,tripId:req.query.tripId,placeId:req.query.placeId},{travelerPlaceRating: req.query.travelerPlaceRating},{new: true })
     .then(response=>{
         res.send('true')
     })
