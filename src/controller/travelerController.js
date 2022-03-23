@@ -91,19 +91,16 @@ const getTripUser = (req,res)=>{
                 res.send(item)
             })
             .catch(err=>{
-                confirm.log(err)
                 res.send('false')
             })
            
         })
         .catch(error=>{
-            confirm.log(error)
             res.send('false')
         })
        
     })
     .catch(error=>{
-        confirm.log(error)
         res.send('false')
     })
 }
