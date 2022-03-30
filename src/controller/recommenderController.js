@@ -64,6 +64,7 @@ const recommendeCollaborativeFilterin = async (req, res) => {
               }
           }
         }
+        console.log("placeInDes \n"+Array.from(placeInDes))
         Place.find({placeId:{$in:Array.from(recommendPlace)}})
         .then(result=>{
           res.send(result)
