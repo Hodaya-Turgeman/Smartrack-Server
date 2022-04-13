@@ -17,7 +17,7 @@ const infoTraveler = (req, res) => {
     
 }
 const addTrip = (req,res) =>{
-    console.log("body", req.body)
+    
     console.log("params", req.params)
     console.log("query", req.query)
     const trip = new Trip({ 
